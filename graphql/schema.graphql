@@ -1,0 +1,25 @@
+type Query {
+  employees: [Employee!]! @paginate
+  employee(id: ID @eq ): Employee!  @find
+}
+type Employee {
+  id: ID
+  name: String
+  position: String
+  address: String
+}
+
+type Mutation {
+  createEmployee(
+    name: String  @rules(apply: ["string"])
+    position: String  @rules(apply: ["string"])
+    address: String  @rules(apply: ["string"])
+    ): Employee @create
+  updateEmployee(
+    id: ID!, name: String
+    position: String
+    address: String): Employee @update
+  deleteEmployee(id: ID!): Employee @delete
+  
+}
+
