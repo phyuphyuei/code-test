@@ -9,17 +9,28 @@ type Employee {
   address: String
 }
 
+type User {
+  id: ID
+  name: String
+  email: String
+}
+
 type Mutation {
   createEmployee(
     name: String  @rules(apply: ["string"])
     position: String  @rules(apply: ["string"])
     address: String  @rules(apply: ["string"])
-    ): Employee @create
+    ): Employee @guard @create
   updateEmployee(
     id: ID!, name: String
     position: String
-    address: String): Employee @update
-  deleteEmployee(id: ID!): Employee @delete
+    address: String): Employee @guard @update
+  deleteEmployee(id: ID!): Employee @guard @delete
   
+  employeeFaKe(count: String): String! @guard
+}
+
+type Query {
+  profile: User! @guard @auth
 }
 
