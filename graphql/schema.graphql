@@ -9,12 +9,6 @@ type Employee {
   address: String
 }
 
-type User {
-  id: ID
-  name: String
-  email: String
-}
-
 type Mutation {
   createEmployee(
     name: String  @rules(apply: ["string"])
